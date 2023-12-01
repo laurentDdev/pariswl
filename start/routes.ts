@@ -26,9 +26,15 @@ Route.get('/discord/redirect', 'AuthController.redirectToDiscord')
 Route.get('/discord/callback', 'AuthController.handleDiscordCallback')
 
 Route.get('/whitelist', 'WhitelistsController.index').middleware('auth')
-Route.post('/submit-form', 'WhitelistsController.submitForm');
+Route.post('/submit-form', 'WhitelistsController.submitForm')
 
+Route.get('/douane', 'DouanesController.index').middleware('auth')
 
+Route.get('/douane/:id', 'DouanesController.show').middleware('auth').as('douane.show')
 
+Route.get('/logout', async ({ auth, response }) => {
+  await auth.logout()
+  response.redirect('/')
+})
 
 // return view.render('whitelist')

@@ -1,5 +1,5 @@
 @layout('layouts/main')
-@set('title', 'Home page')
+@set('title', 'Whitelist')
 
 @section('body')
 <main class="m-0 h-full flex flex-rows gap-10">
@@ -7,52 +7,50 @@
       <ul class="flex flex-col gap-5">
         <li><a class="text-white flex gap-5 items-center" href="/whitelist"><i class="fa-solid fa-question"></i>Demande de whitelist</a></li>
         @if(douanier)
-        <li><a class="text-white flex gap-5 items-center" href=""><i class="fa-brands fa-squarespace"></i>Espace douanier</a></li>
+        <li><a class="text-white flex gap-5 items-center" href="/douane"><i class="fa-brands fa-squarespace"></i>Espace douanier</a></li>
         @end
       </ul>
       <ul>
-        <li><a href="" class="text-white flex gap-5 items-center"><i class="fa-solid fa-right-from-bracket"></i>Deconnexion</a></li>
+        <li><a href="/logout" class="text-white flex gap-5 items-center"><i class="fa-solid fa-right-from-bracket"></i>Deconnexion</a></li>
       </ul>
     </nav>
-    <div class="mx-auto p-10">
-      <form action="/submit-form" method="POST" class="p-5">
-        <h2 class="text-white text-center mb-8">Demande de whitelist</h2>
+    <div class="mx-auto p-10 flex items-center">
+      <form action="/submit-form" method="POST" class="p-5 bg-gray-800 rounded-md">
+        <h2 class="text-white text-center mb-8 text-2xl font-bold">Demande de whitelist</h2>
         <div class="flex flex-row justify-between gap-10 mb-4">
           <div class="flex flex-col w-1/2">
             <label for="nom_rp" class="text-white">Nom RP</label>
-            <input type="text" id="nom_rp" name="nom_rp" class="p-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+            <input type="text" id="nom_rp" name="nom_rp" class="p-3 border rounded-md focus:outline-none focus:border-blue-500" required>
           </div>
           <div class="flex flex-col w-1/2">
             <label for="prenom_rp" class="text-white">Prénom RP</label>
-            <input type="text" id="prenom_rp" name="prenom_rp" class="p-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+            <input type="text" id="prenom_rp" name="prenom_rp" class="p-3 border rounded-md focus:outline-none focus:border-blue-500" required>
           </div>
         </div>
         <div class="flex flex-col mb-4">
           <label class="text-white" for="job_souhaite">Job Souhaité</label>
-          <input type="text" id="job_souhaite" name="job_souhaite" class="p-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+          <input type="text" id="job_souhaite" name="job_souhaite" class="p-3 border rounded-md focus:outline-none focus:border-blue-500" required>
         </div>
         <div class="flex flex-col mb-4">
           <label class="text-white" for="type_job">Type de job</label>
-          <select id="type_job" name="type_job" class="p-2 border rounded-md focus:outline-none focus:border-blue-500">
+          <select id="type_job" name="type_job" class="p-3 border rounded-md focus:outline-none focus:border-blue-500">
             <option value="illegale">Illégale</option>
             <option value="legale">Légale</option>
           </select>
         </div>
         <div class="flex flex-col mb-4">
           <label class="text-white" for="date_anniversaire">Date d'anniversaire</label>
-          <input type="date" id="date_anniversaire" name="date_anniversaire" class="p-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+          <input type="date" id="date_anniversaire" name="date_anniversaire" class="p-3 border rounded-md focus:outline-none focus:border-blue-500" required>
         </div>
         <div class="flex flex-col mb-4">
           <label for="background_personnage" class="text-white">Background de votre personnage</label>
-          <textarea id="background_personnage" name="background_personnage" rows="5" class="p-2 border rounded-md focus:outline-none focus:border-blue-500 resize-none" required></textarea>
+          <textarea id="background_personnage" name="background_personnage" rows="5" class="p-3 border rounded-md focus:outline-none focus:border-blue-500 resize-none" required></textarea>
         </div>
-        <button type="submit" class="bg-white text-red-500 py-2 px-4 rounded-md hover:bg-red-700 hover:text-white">Soumettre</button>
+        <button type="submit" class="bg-blue-500 text-white py-3 px-6 rounded-md hover:bg-blue-700 hover:text-white">Soumettre</button>
         @if(request.input('message'))
-        <p class="text-green-500">{{decodeURIComponent( request.input('message'))}}</p>
-    @endif
+        <p class="text-green-500 mt-4">{{decodeURIComponent( request.input('message'))}}</p>
+        @endif
       </form>
     </div>
-    
-    
 </main>
 @end

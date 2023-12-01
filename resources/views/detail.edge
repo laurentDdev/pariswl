@@ -1,0 +1,43 @@
+@layout('layouts/main')
+@set('title', 'Détail')
+
+@section('body')
+<main class="m-0 h-full flex justify-center items-center">
+    <div class="bg-white p-8 rounded shadow-md w-1/2">
+        <h2 class="text-2xl font-bold mb-4">Détails de la demande de whitelist</h2>
+
+        <div class="mb-4">
+            <strong>Nom RP:</strong> {{ requestWl.lastname }}
+        </div>
+
+        <div class="mb-4">
+            <strong>Prénom RP:</strong> {{ requestWl.firstname }}
+        </div>
+
+        <div class="mb-4">
+            <strong>Job:</strong> {{ requestWl.job }}
+        </div>
+
+        <div class="mb-4">
+            <strong>Type de Job:</strong> {{ requestWl.jobType }}
+        </div>
+
+        <div class="mb-4">
+            <strong>Date d'anniversaire:</strong> {{ requestWl.birthday.toFormat('yyyy-MM-dd') }}
+        </div>
+
+        <div class="mb-4 overflow-auto max-h-40">
+            <strong>Background du personnage:</strong>
+            <p class="whitespace-pre-line">{{ requestWl.background }}</p>
+        </div>
+
+        <div class="mt-8 flex justify-between items-center">
+            <a href="/douane" class="text-blue-500 hover:underline">Retour à la liste</a>
+            <div class="space-x-4">
+                <button class="p-2 bg-green-500 text-white rounded-md hover:bg-green-600">Passer à l'entretien vocal</button>
+                <button class="p-2 bg-red-500 text-white rounded-md hover:bg-red-600">Refuser la candidature</button>
+            </div>
+        </div>
+    </div>
+</main>
+@end
