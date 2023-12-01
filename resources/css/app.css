@@ -12,6 +12,12 @@ html, body {
   position: relative;
 }
 
+*,::before,::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body:before {
   content: '';
   background: rgba(99, 110, 114,1.0);
@@ -32,49 +38,4 @@ a {
   font-family: 'poppins';
 }
 
-main {
-  max-width: 620px;
-  margin: auto;
-  height: 100vh;
-  padding: 0 30px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
 
-.title {
-  font-size: 50px;
-  line-height: 50px;
-  margin-bottom: 10px;
-  color: #17161A;
-}
-
-.subtitle {
-  font-size: 26px;
-  margin-bottom: 40px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-main ul {
-  list-style: none;
-}
-
-main li {
-  margin-bottom: 5px;
-  position: relative;
-  padding-left: 25px;
-}
-
-main li:before {
-  content: '—';
-  position: absolute;
-  left: 0;
-}
-
-main code {
-  font-size: 16px;
-  background: #e6e2ff;
-}

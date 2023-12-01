@@ -7,8 +7,7 @@ export default class HomeController {
       if (auth.use('web').isAuthenticated) {
         return response.redirect('/whitelist')
       }
-
-    }catch (e) {
+    } catch (e) {
       return view.render('welcome')
     }
   }

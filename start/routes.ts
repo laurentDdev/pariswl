@@ -25,12 +25,10 @@ Route.get('/', 'HomeController.index')
 Route.get('/discord/redirect', 'AuthController.redirectToDiscord')
 Route.get('/discord/callback', 'AuthController.handleDiscordCallback')
 
-Route.get('/whitelist', async ({ view, ally, auth }) => {
-  await auth.use('web').authenticate()
-  const user = await ally.use('discord').userFromToken(auth.user?.accessToken as string)
-  console.log(user.original)
-
-  return view.render('whitelist')
-}).middleware('auth')
+Route.get('/whitelist', 'WhitelistsController.index').middleware('auth')
+Route.post('/submit-form', 'WhitelistsController.submitForm');
 
 
+
+
+// return view.render('whitelist')

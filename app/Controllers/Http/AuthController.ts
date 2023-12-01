@@ -39,9 +39,8 @@ export default class AuthController {
 
       // Logique d'authentification dans votre application Adonis.js
 
-      const user = await User.firstOrCreate({
-          email: discordUser.email,
-        },
+      const user = await User.updateOrCreate(
+        { email: discordUser.email },
         {
           email: discordUser.email,
           name: discordUser.name,
@@ -49,7 +48,8 @@ export default class AuthController {
           isVerified: discordUser.emailVerificationState === 'verified',
           douanier: userRoles.includes('1176865253447974992'),
         }
-      )
+      );
+      
 
       await auth.use('web').login(user, true)
 
