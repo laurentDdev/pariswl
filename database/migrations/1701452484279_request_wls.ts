@@ -1,4 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import { StateRequest } from 'App/Models/RequestWl'
 
 export default class extends BaseSchema {
   protected tableName = 'request_wls'
@@ -10,6 +11,7 @@ export default class extends BaseSchema {
       table.string('firstname')
       table.string('job')
       table.string('job_type')
+      table.string('state').defaultTo(StateRequest.WAIT)
       table.timestamp('birthday')
       table.text('background')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')

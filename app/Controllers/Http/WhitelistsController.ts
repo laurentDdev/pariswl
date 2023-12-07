@@ -1,7 +1,5 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import RequestWl from 'App/Models/RequestWl'
-import axios from 'axios'
-
 export default class WhitelistsController {
   public async index({ view, auth, response }) {
     try {
@@ -12,6 +10,7 @@ export default class WhitelistsController {
       return view.render('whitelist', { douanier, successMessage: false })
     } catch (error) {
       console.log(error)
+      return response.redirect(`/`)
     }
   }
 
@@ -39,10 +38,6 @@ export default class WhitelistsController {
       background: formData['background_personnage'],
     })
     await user.related('requestWl').save(requestWl)
-
-    // Vous pouvez maintenant utiliser les données pour effectuer des opérations en base de données, etc.
-
-    // Redirigez l'utilisateur ou renvoyez une réponse, selon vos besoins
 
     const successMessage = 'Votre demande a bien été envoyée'
     return response.redirect(`/whitelist?message=${encodeURIComponent(successMessage)}`)

@@ -1,6 +1,11 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
+export enum StateRequest {
+  WAIT = 'Wait',
+  ACCEPT = 'Accept',
+  REJECT = 'Reject',
+}
 export default class RequestWl extends BaseModel {
   @column({ isPrimary: true })
   public id: number
@@ -16,6 +21,9 @@ export default class RequestWl extends BaseModel {
 
   @column()
   public userId: number
+
+  @column()
+  public state: string
 
   @column()
   public jobType: string

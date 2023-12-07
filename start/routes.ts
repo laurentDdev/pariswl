@@ -21,6 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'HomeController.index')
+Route.get('/my-state', 'HomeController.state').middleware('auth').as('my-state')
 
 Route.get('/discord/redirect', 'AuthController.redirectToDiscord')
 Route.get('/discord/callback', 'AuthController.handleDiscordCallback')
@@ -28,9 +29,19 @@ Route.get('/discord/callback', 'AuthController.handleDiscordCallback')
 Route.get('/whitelist', 'WhitelistsController.index').middleware('auth')
 Route.post('/submit-form', 'WhitelistsController.submitForm')
 
-Route.get('/douane', 'DouanesController.index').middleware('auth')
+Route.get('/douane', 'DouanesController.index').middleware('auth').as('list')
+
+Route.post('/douane/reject/:id', 'DouanesController.rejectRequest')
+  .middleware('auth')
+  .as('douane.reject')
+
+Route.post('/douane/accept/:id', 'DouanesController.acceptRequest')
+  .middleware('auth')
+  .as('douane.accept')
 
 Route.get('/douane/:id', 'DouanesController.show').middleware('auth').as('douane.show')
+
+
 
 Route.get('/logout', async ({ auth, response }) => {
   await auth.logout()

@@ -6,6 +6,7 @@
     <nav class="p-5 px-8 bg-stone-800 flex flex-col justify-between">
       <ul class="flex flex-col gap-5">
         <li><a class="text-white flex gap-5 items-center" href="/whitelist"><i class="fa-solid fa-question"></i>Demande de whitelist</a></li>
+        <li><a class="text-white flex gap-5 items-center" href="{{route('my-state')}}"><i class="fa-brands fa-usps"></i>Status de ma demande</a></li>
         @if(douanier)
         <li><a class="text-white flex gap-5 items-center" href="/douane"><i class="fa-brands fa-squarespace"></i>Espace douanier</a></li>
         @end
@@ -38,6 +39,9 @@
                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                Date d'anniversaire
                            </th>
+                           <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                          Status de la demande
+                          </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Voir plus
                             </th>
@@ -61,6 +65,19 @@
                                <td class="px-6 py-4 whitespace-nowrap">
                                    {{ request.birthday.toFormat('yyyy-MM-dd') }}
                                </td>
+                                @if(request.state == "Wait")
+                                      <td class="px-6 py-4 whitespace-nowrap bg-gray-500 text-white">
+                                          En attente
+                                      </td>
+                                @elseif(request.state == "Reject")
+                                    <td class="px-6 py-4 whitespace-nowrap bg-red-500 text-white">
+                                        Rejeter
+                                    </td>
+                                @else
+                                   <td class="px-6 py-4 whitespace-nowrap bg-green-500 text-white">
+                                      Accepter
+                                  </td>
+                                @end
                                 <td class="px-6 py-4 whitespace-nowrap">
                                    <button class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                                        <a href="{{ route('douane.show', { id: request.id }) }}">Voir plus</a>

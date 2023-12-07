@@ -1,0 +1,21 @@
+@layout('layouts/main')
+@set('title', 'Accueil')
+
+@section('body')
+<main  class="m-0 h-full flex flex-col justify-center items-center">
+  @if(myRequest)
+    @if(myRequest.state == "Accept")
+      <p class="text-white">Votre demande a été accepter vous pouvez passer a l'entretien vocal</p>
+    @elseif(myRequest.state == "Wait")
+      <p class="text-white">Votre demande est toujours en attente</p>
+    @elseif(myRequest.state == "Reject")
+      <p class="text-white">Votre demande a été refuser</p>
+    @end
+  @else
+    <p>Vous n'avez aucune demande d'enregistrer</p>
+  @end
+  <a href="/douane" class="text-blue-500 hover:underline">Retour à la liste</a>
+</main>
+@end
+
+
